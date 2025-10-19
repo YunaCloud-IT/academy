@@ -1,0 +1,76 @@
+services:
+  telegraf:
+    image: arm64v8/telegraf
+    container_name: telegraf
+    restart: always
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro  # Mount the Telegraf configuration file
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # Mount the Docker socket to collect Docker metrics
+    depends_on:
+      - influxdb
+      - nginx
+    links:
+      - influxdb
+      - nginx
+    ports:
+      - '8125:8125'  # Expose Telegraf's StatsD port
+
+  telegraf_second:
+    image: arm64v8/telegraf
+    container_name: telegraf_second
+    restart: always
+    volumes:
+      - ./telegraf/telegraf_second.conf:/etc/telegraf/telegraf.conf:ro  # Mount the second Telegraf configuration file
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    ports:
+      - '8126:8126'  # Expose the second Telegraf's StatsD port
+
+  nginx:
+    image: arm64v8/nginx:alpine
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./nginx:/etc/nginx/conf.d  # Mount the Nginx configuration directory
+    ports:
+      - '8080:80'  # Expose Nginx on port 8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 2
+
+  influxdb:
+    image: arm64v8/influxdb:1.12.2
+    container_name: influxdb
+    restart: always
+    environment:
+      - INFLUXDB_DB=influx
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+    ports:
+      - '8086:8086'  # Expose InfluxDB on port 8086
+    volumes:
+      - influxdb_data:/var/lib/influxdb  # Mount the InfluxDB data directory
+
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: always
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    links:
+      - influxdb
+    ports:
+      - '3000:3000'  # Expose Grafana on port 3000
+    volumes:
+      - grafana_data:/var/lib/grafana  # Mount the Grafana data directory
+
+volumes:
+  grafana_data: {}  # Volume for Grafana data
+  influxdb_data: {}  # Volume for InfluxDB data
