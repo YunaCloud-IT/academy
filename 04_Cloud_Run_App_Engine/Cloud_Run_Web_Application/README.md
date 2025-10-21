@@ -19,8 +19,8 @@ First, set up the directory structure and files for your simple NGINX-powered we
 
     ```bash
     # Create the main project directory
-    mkdir cloudrun-webapp
-    cd cloudrun-webapp
+    mkdir cloudrun
+    cd cloudrun
 
     # Create subdirectories for HTML and NGINX config
     mkdir -p html nginx
@@ -88,8 +88,8 @@ Before building, prepare your cloud environment by setting variables, enabling A
 
     ```bash
     export PROJECT_ID=$(gcloud config get-value project)
-    export REGION="europe-west3"
-    export REPO_NAME="my-web-apps"
+    export REGION="europe-west4"
+    export REPO_NAME="my-web-cloudrun-app"
     export IMAGE_NAME="nginx-web"
     export SERVICE_NAME="my-nginx-webapp"
     ```

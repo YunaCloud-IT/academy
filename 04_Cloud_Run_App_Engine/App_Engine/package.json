@@ -1,0 +1,12 @@
+{
+  "name": "app-engine-demo",
+  "version": "1.0.0",
+  "description": "A simple Node.js app for App Engine.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
