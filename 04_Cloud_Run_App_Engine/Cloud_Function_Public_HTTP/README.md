@@ -44,19 +44,10 @@ First, authenticate your `gcloud` CLI and set your target project.
 
 For better security, your function should run with its own identity that has minimal permissions.
 
-1.  **Create the Service Account:**
+1.  **Run the Script**
     ```bash
-    # You can change "my-function-sa" to a name of your choice
-    gcloud iam service-accounts create my-function-sa \
-      --display-name="My HTTP Function Service Account"
-    ```
-
-2.  **Get the full email address of the new service account:**
-    You will need this for the deployment step.
-    ```bash
-    # Replace "[YOUR_PROJECT_ID]" with your Project ID
-    export SA_EMAIL="my-function-sa@[YOUR_PROJECT_ID].iam.gserviceaccount.com"
-    echo "Service Account Email: $SA_EMAIL"
+    bash init.sh
+    echo $CUSTOM_SA_EMAIL
     ```
 
 ---
