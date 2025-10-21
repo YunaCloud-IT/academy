@@ -12,6 +12,15 @@ This Docker Compose setup launches three key services for monitoring and data vi
 * **Telegraf**: A server agent for collecting and reporting metrics. We will configure it to collect data from an MQTT broker.
 * **Grafana**: A visualization tool for creating dashboards from data stored in InfluxDB.
 
+### Links
+
+- Telegraf: [Official Website](https://www.influxdata.com/time-series-platform/telegraf/)
+
+- InfluxDB: [Official Website](https://www.influxdata.com/)
+
+- Grafana: [Official Website](https://grafana.com/)
+
+- Docker-Compose: [Official Website](https://docs.docker.com/compose/)
 
 ---
 

@@ -16,6 +16,8 @@ Before you begin, you must have the following software installed on your system:
 
 ## 1. Get the Project Files
 
+Official Git Repository: [Git Repository for IoT Simulator](https://github.com/massimocallisto/iot-simulator)
+
 First, you need to download the repository from GitHub.
 
 * **Open your terminal** or command prompt.

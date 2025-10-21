@@ -15,7 +15,7 @@ Before you begin, you'll need:
 
 ## Step 1: Install InfluxDB 2
 
-Official Documentation: [InfluxData](https://docs.influxdata.com/influxdb/v2/install/?t=Linux&dl=oss&code_lang=bash&code_lines=12&code_type=code&section=Install%2520InfluxDB%2520as%2520a%2520service%2520with%2520systemd&first_line=%2523%2520Ubuntu%2520and%2520Debian)
+Official Documentation: [InfluxData Installation Instructions](https://docs.influxdata.com/influxdb/v2/install/?t=Linux&dl=oss&code_lang=bash&code_lines=12&code_type=code&section=Install%2520InfluxDB%2520as%2520a%2520service%2520with%2520systemd&first_line=%2523%2520Ubuntu%2520and%2520Debian)
 
 With the repository configured, update your local package index and then install the influxdb2 package.
 

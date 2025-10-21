@@ -4,6 +4,8 @@
 
 This guide will walk you through the full process of installing `kind`, creating a cluster, deploying a sample application, and installing the popular `k9s` management tool on both macOS and Windows.
 
+Official Documentation: [Kind Website](https://kind.sigs.k8s.io/)
+
 ---
 
 ## Prerequisites
