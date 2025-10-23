@@ -50,7 +50,7 @@ Now, you will deploy a sample container from Google's Artifact Registry. By defa
     This command pulls the public "hello" container and deploys it as a new, private service in your project.
     ```bash
     gcloud run deploy $SERVICE_NAME \
-      --image="us-docker.pkg.dev/cloudrun/container/hello" \
+      --image="gcr.io/cloudrun/hello" \
       --platform="managed" \
       --region=$REGION \
       --no-allow-unauthenticated

@@ -87,7 +87,7 @@ A service account only works for a VM when it is attached. You can do this when 
     ```bash
     gcloud compute instances create my-vm-instance \
         --project=your-project-id \
-        --zone=us-central1-a \
+        --zone=europe-west4-a \
         --machine-type=e2-medium \
         --image-family=debian-11 \
         --image-project=debian-cloud \
@@ -100,7 +100,7 @@ A service account only works for a VM when it is attached. You can do this when 
 
 1.  SSH into the VM instance you created.
     ```bash
-    gcloud compute ssh my-vm-instance --zone=us-central1-a
+    gcloud compute ssh my-vm-instance --zone=europe-west4-a
     ```
 2.  Inside the VM, check the active authenticated account. The metadata server automatically provides credentials for the attached service account to `gcloud` and client libraries.
     ```bash

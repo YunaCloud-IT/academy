@@ -52,12 +52,12 @@ This method is faster for users who are comfortable with the command line.
     * `gcloud container clusters create-auto`: This is the command to create a GKE Autopilot cluster.
     * `"your-cluster-name"`: The name for your cluster (e.g., `dev-cluster-zonal`).
     * `--project`: (Optional) The ID of your Google Cloud project. This is only needed if you haven't set a default project in your `gcloud` configuration.
-    * `--zone`: This flag specifies the single compute zone where the cluster will be created, making it a zonal cluster (e.g., `us-central1-c`). You can find available zones by running `gcloud compute zones list`.
+    * `--zone`: This flag specifies the single compute zone where the cluster will be created, making it a zonal cluster (e.g., `europe-west4-c`). You can find available zones by running `gcloud compute zones list`.
 
 4.  **Example Command:**
     ```bash
     gcloud container clusters create-auto "dev-cluster-zonal" \
-        --zone="us-central1-c"
+        --zone="europe-west4-c"
     ```
 5.  The CLI will prompt you to confirm the creation. After you confirm, the process will begin.
 
@@ -75,7 +75,7 @@ Once the cluster is created, you need to configure `kubectl` to interact with it
     *Example:*
     ```bash
     gcloud container clusters get-credentials "dev-cluster-zonal" \
-        --zone="us-central1-c"
+        --zone="europe-west4-c"
     ```
 
 2.  Verify the connection by listing the nodes. Since it's an Autopilot cluster, you won't see traditional nodes, but this confirms `kubectl` is working.
