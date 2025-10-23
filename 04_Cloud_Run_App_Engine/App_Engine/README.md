@@ -126,6 +126,13 @@ This command will automatically open your app's default URL (`https://<project-i
 
 Congratulations, your app is now live!
 
+## Clean Up
+
+```
+gcloud app versions list
+gcloud app versions stop VERSION_ID --service="default"
+```
+
 ## Error Hanfdling
 
 ### Failed to create cloud build: com.google.net.rpc3.client.RpcClientException
