@@ -4,3 +4,4 @@ transaction_*
 sa-key.json
 
 index.js
+*.csv
