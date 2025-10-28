@@ -97,7 +97,7 @@ With the code and configuration complete, you can now deploy the function.
     This command deploys a 2nd Generation HTTP-triggered function that allows public (unauthenticated) access.
 
     ```bash
-    gcloud functions deploy hello-http-function \
+    gcloud functions deploy hello-http-function-srh \
       --gen2 \
       --runtime nodejs20 \
       --region europe-west3 \
