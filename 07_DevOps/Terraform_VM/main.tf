@@ -23,6 +23,7 @@ module "instance_template" {
   subnetwork         = var.subnetwork
   subnetwork_project = var.project_id
   service_account    = var.service_account
+  machine_type = var.machine_type
 }
 
 module "compute_instance" {
@@ -34,7 +35,7 @@ module "compute_instance" {
   subnetwork          = var.subnetwork
   subnetwork_project  = var.project_id
   num_instances       = var.num_instances
-  hostname            = "instance-simple"
+  hostname            = "instance-simple-terraform"
   instance_template   = module.instance_template.self_link
   deletion_protection = false
 

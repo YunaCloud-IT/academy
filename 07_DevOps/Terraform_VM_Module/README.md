@@ -66,7 +66,7 @@ resource "google_compute_network" "vpc_network" {
 # 2. Define the Compute Engine VM Instance
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
-  machine_type = "e2-micro"      # A small, cost-effective machine type
+  machine_type = "e2-medium"      # A small, cost-effective machine type
   zone         = "europe-west10-c" # Change this to your desired zone
 
   # Define the boot disk and image
