@@ -138,7 +138,9 @@ Deploy the container image you just built to a new, publicly accessible Cloud Ru
       --image="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:latest" \
       --platform="managed" \
       --region=$REGION \
-      --allow-unauthenticated
+      --allow-unauthenticated \
+      --min-instances=0 \
+      --max-instances=2
     ```
     * **`$SERVICE_NAME`**: Explicitly names your service.
     * **`--allow-unauthenticated`**: This flag makes the service public and automatically configures the correct IAM permissions. This replaces the need for manual IAM binding commands.
