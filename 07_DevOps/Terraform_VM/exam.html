@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Presentation Sign-Up</title>
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use the Inter font, a clean sans-serif */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for the contenteditable cells */
+        [contenteditable="true"] {
+            padding: 0.75rem; /* p-3 */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+            border-radius: 0.375rem; /* rounded-md */
+            min-height: 42px; /* Ensure a minimum height */
+            cursor: text;
+        }
+        [contenteditable="true"]:empty:before {
+            color: #9ca3af; /* text-gray-400 */
+            font-style: italic;
+        }
+    </style>
+    <!-- Import Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+
+<div class="max-w-7xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-lg">
+
+    <!-- Header Section -->
+    <header class="mb-8">
+        <h1 class="text-3xl md:text-5xl font-extrabold text-gray-800 mb-2">
+            EXAM PRESENTATION SIGN-UP
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600">
+            First come, first served! Max 17 seats per day.
+        </p>
+    </header>
+
+    <!-- Important Notes Section -->
+    <div class="bg-blue-800 text-white p-5 rounded-lg mb-8 shadow-md">
+        <h2 class="text-xl font-bold mb-2">IMPORTANT NOTES:</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li>Only 1 entry per group.</li>
+            <li>Please do not delete others' names.</li>
+            <li>Sign-up is first-come, first-served. Once 17 slots are full, the day is closed.</li>
+        </ul>
+    </div>
+
+    <!-- Main Content: Two-Column Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- === Column 1: Tuesday, 11.11 === -->
+        <section class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+            <h2 class="text-3xl font-bold text-blue-700 mb-1">TUESDAY, 11 NOV</h2>
+            <p class="text-md text-gray-500 mb-4 font-semibold" id="count-tuesday">
+                17 SLOTS AVAILABLE
+            </p>
+
+            <!-- Sign-up Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto">
+                    <thead class="bg-gray-200">
+                    <tr>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-700 w-12">Slot</th>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-700">Participant Name(s)</th>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-700">Group Name (Optional)</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                    <!-- Generate 17 rows -->
+                    <script>
+                        for (let i = 1; i <= 17; i++) {
+                            document.write(`
+                                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                            <td class="p-3 text-center font-medium text-gray-700">${i}</td>
+                                            <td contenteditable="true" class="editable-cell" data-day="tuesday"></td>
+                                            <td contenteditable="true" class="editable-cell" data-day="tuesday-group"></td>
+                                        </tr>
+                                    `);
+                        }
+                    </script>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- === Column 2: Thursday, 13.11 === -->
+        <section class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+            <h2 class="text-3xl font-bold text-teal-700 mb-1">THURSDAY, 13 NOV</h2>
+            <p class="text-md text-gray-500 mb-4 font-semibold" id="count-thursday">
+                17 SLOTS AVAILABLE
+            </p>
+
+            <!-- Sign-up Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto">
+                    <thead class="bg-gray-200">
+                    <tr>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-700 w-12">Slot</th>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-700">Participant Name(s)</th>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-700">Group Name (Optional)</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                    <!-- Generate 17 rows -->
+                    <script>
+                        for (let i = 1; i <= 17; i++) {
+                            document.write(`
+                                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                            <td class="p-3 text-center font-medium text-gray-700">${i}</td>
+                                            <td contenteditable="true" class="editable-cell" data-day="thursday"></td>
+                                            <td contenteditable="true" class="editable-cell" data-day="thursday-group"></td>
+                                        </tr>
+                                    `);
+                        }
+                    </script>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- JavaScript to count filled slots (for demonstration) -->
+<script>
+    const cells = document.querySelectorAll('.editable-cell');
+
+    function updateCounts() {
+        let tuesdayCount = 0;
+        let thursdayCount = 0;
+
+        const tuesdayCells = document.querySelectorAll('[data-day="tuesday"]');
+        tuesdayCells.forEach(cell => {
+            if (cell.textContent.trim() !== '') {
+                tuesdayCount++;
+            }
+        });
+
+        const thursdayCells = document.querySelectorAll('[data-day="thursday"]');
+        thursdayCells.forEach(cell => {
+            if (cell.textContent.trim() !== '') {
+                thursdayCount++;
+            }
+        });
+
+        const tuesdayRemaining = 17 - tuesdayCount;
+        const thursdayRemaining = 17 - thursdayCount;
+
+        document.getElementById('count-tuesday').textContent =
+            `${tuesdayRemaining} SLOT${tuesdayRemaining !== 1 ? 'S' : ''} AVAILABLE`;
+
+        document.getElementById('count-thursday').textContent =
+            `${thursdayRemaining} SLOT${thursdayRemaining !== 1 ? 'S' : ''} AVAILABLE`;
+    }
+
+    // Add event listeners to update counts as user types
+    cells.forEach(cell => {
+        cell.addEventListener('input', updateCounts);
+    });
+
+    // Initial count on load
+    updateCounts();
+</script>
+
+</body>
+</html>
+
