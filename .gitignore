@@ -5,3 +5,16 @@ sa-key.json
 
 index.js
 *.csv
+
+# Local .terraform directories
+**/.terraform*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Local tfvars terraform.tfvars
+**/*.tfvars
+
+# tf lock file
+**/.terraform.lock.hcl

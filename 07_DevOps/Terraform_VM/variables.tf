@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "The GCP project to use for integration tests"
   type        = string
-  default       = "prj-academy-1-475307" # "YOUR_PROJECT_ID"
+  default       = "prj-academy-2" # "YOUR_PROJECT_ID"
 }
 
 variable "region" {
