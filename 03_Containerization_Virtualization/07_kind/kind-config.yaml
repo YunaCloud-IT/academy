@@ -6,6 +6,8 @@ nodes:
     extraPortMappings:
       - containerPort: 30080
         hostPort: 8080
+      - containerPort: 30081
+        hostPort: 8081
     extraMounts:
       - hostPath: ./cluster-data
         containerPath: /var/local-path-provisioner
