@@ -18,3 +18,48 @@ index.js
 
 # tf lock file
 **/.terraform.lock.hcl
+
+/Examples/E_Commerce_Shop/shopworld/.nx/
+# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# compiled output
+/Examples/E_Commerce_Shop/shopworld/dist
+/Examples/E_Commerce_Shop/shopworld/tmp
+/Examples/E_Commerce_Shop/shopworld/out-tsc
+
+# dependencies
+/Examples/E_Commerce_Shop/shopworld/node_modules
+
+# IDEs and editors
+/Examples/E_Commerce_Shop/shopworld/.idea
+/Examples/E_Commerce_Shop/shopworld/.project
+/Examples/E_Commerce_Shop/shopworld/.classpath
+/Examples/E_Commerce_Shop/shopworld/.c9/
+/Examples/E_Commerce_Shop/shopworld/*.launch
+/Examples/E_Commerce_Shop/shopworld/.settings/
+/Examples/E_Commerce_Shop/shopworld/*.sublime-workspace
+
+# IDE - VSCode
+/Examples/E_Commerce_Shop/shopworld/.vscode/
+/Examples/E_Commerce_Shop/shopworld/.vscode/*
+!/Examples/E_Commerce_Shop/shopworld/.vscode/settings.json
+!/Examples/E_Commerce_Shop/shopworld/.vscode/tasks.json
+!/Examples/E_Commerce_Shop/shopworld/.vscode/launch.json
+!/Examples/E_Commerce_Shop/shopworld/.vscode/extensions.json
+
+# misc
+/Examples/E_Commerce_Shop/shopworld/.sass-cache
+/Examples/E_Commerce_Shop/shopworld/connect.lock
+/Examples/E_Commerce_Shop/shopworld/coverage
+/Examples/E_Commerce_Shop/shopworld/libpeerconnection.log
+/Examples/E_Commerce_Shop/shopworld/npm-debug.log
+/Examples/E_Commerce_Shop/shopworld/yarn-error.log
+/Examples/E_Commerce_Shop/shopworld/testem.log
+/Examples/E_Commerce_Shop/shopworld/typings
+
+# System Files
+/Examples/E_Commerce_Shop/shopworld/.DS_Store
+/Examples/E_Commerce_Shop/shopworld/Thumbs.db
+
+/Examples/E_Commerce_Shop/shopworld/.nx/cache
+/Examples/E_Commerce_Shop/shopworld/.nx/workspace-data
