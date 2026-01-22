@@ -1,0 +1,14 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  # 1 Control Plane Node with enhancements
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 8080
+    extraMounts:
+      - hostPath: ./cluster-data
+        containerPath: /var/local-path-provisioner
+  # 2 Worker Nodes
+  - role: worker
+  - role: worker
