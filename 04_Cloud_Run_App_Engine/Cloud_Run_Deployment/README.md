@@ -90,3 +90,31 @@ To avoid incurring ongoing costs, always delete resources you are no longer usin
     gcloud run services delete $SERVICE_NAME --platform=managed --region=$REGION
     ```
     You will be prompted to confirm the deletion. Type `Y` to proceed.
+
+---
+
+## Deploy VSCode via Cloud Run
+
+```
+gcloud run deploy vscode-server \
+  --image=docker.io/codercom/code-server:latest \
+  --port=8080 \
+  --cpu=2 \
+  --memory=4Gi \
+  --allow-unauthenticated \
+  --region=us-central1
+```
+
+## Deploy Grafana via Cloud Run
+
+```
+gcloud run deploy grafana \
+  --image=docker.io/grafana/grafana:latest \
+  --port=3000 \
+  --cpu=1 \
+  --memory=2Gi \
+  --set-env-vars="GF_SECURITY_ADMIN_PASSWORD=your-secure-password" \
+  --allow-unauthenticated \
+  --region=us-central1
+```
+
