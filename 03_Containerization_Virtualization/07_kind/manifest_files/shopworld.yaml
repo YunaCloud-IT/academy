@@ -15,7 +15,7 @@ spec:
       containers:
         - name: backend
           # UPDATED: Pointing to your repository image
-          image: itchimonji/shopworld-backend:0.1
+          image: itchimonji/shopworld-backend:v3
 
           # UPDATED: Removed "Never" so it can pull from the registry.
           # "IfNotPresent" is the default for versioned tags, which is perfect here.

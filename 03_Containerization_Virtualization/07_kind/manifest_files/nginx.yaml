@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:latest
+          image: nginx:stable-alpine3.23
           ports:
             - containerPort: 80
           resources:
