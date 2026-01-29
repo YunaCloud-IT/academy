@@ -102,7 +102,7 @@ gcloud run deploy vscode-server \
   --cpu=2 \
   --memory=4Gi \
   --allow-unauthenticated \
-  --region=us-central1
+  --region=europe-west10
 ```
 
 ## Deploy Grafana via Cloud Run
@@ -115,6 +115,16 @@ gcloud run deploy grafana \
   --memory=2Gi \
   --set-env-vars="GF_SECURITY_ADMIN_PASSWORD=your-secure-password" \
   --allow-unauthenticated \
-  --region=us-central1
+  --region=europe-west10
 ```
 
+## Deploy ShopWorld from the Examples Directory
+
+```
+gcloud run deploy shopworld-backend \
+  --image itchimonji/shopworld-backend:v4 \
+  --region europe-west3 \
+  --platform managed \
+  --allow-unauthenticated \
+  --port 3000
+```

@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+    paths:
+      - 'Examples/E_Commerce_Shop/shopworld/**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'Examples/E_Commerce_Shop/shopworld/**'
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    # This ensures every 'run' command starts inside your NestJS app folder
+    defaults:
+      run:
+        working-directory: Examples/E_Commerce_Shop/shopworld
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: tree:0
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          # We must tell the cache where the lockfile is since it's not in root
+          cache-dependency-path: Examples/E_Commerce_Shop/shopworld/package-lock.json
+
+      - run: npm ci --legacy-peer-deps
+
+      - name: Lint and Build
+        run: npx nx run-many -t lint build -p backend
+
+      - name: Test with Coverage
+        run: npx nx run-many -t test -p backend --codeCoverage
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: |
+          VERSION="v${{ github.run_number }}-$(git rev-parse --short HEAD)"
+          echo "Building version: $VERSION"
+          
+          docker build -t itchimonji/shopworld-backend:$VERSION \
+                       -t itchimonji/shopworld-backend:latest .
+
