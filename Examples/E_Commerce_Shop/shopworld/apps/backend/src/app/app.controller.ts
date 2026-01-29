@@ -19,4 +19,9 @@ export class AppController {
   getCoffeeMachinesCategories() {
     return this.appService.getCoffeeMachinesCategories();
   }
+
+  @Get("coffee-companies")
+  getCoffeeCompanies() {
+    return this.appService.getCoffeeCompanies();
+  }
 }

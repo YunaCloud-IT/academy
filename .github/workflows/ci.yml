@@ -48,11 +48,24 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build Docker Image
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push to Docker Hub
+        id: docker_build
         run: |
+          # Create a unique tag
           VERSION="v${{ github.run_number }}-$(git rev-parse --short HEAD)"
-          echo "Building version: $VERSION"
+          IMAGE_NAME="itchimonji/shopworld-backend"
           
-          docker build -t itchimonji/shopworld-backend:$VERSION \
-                       -t itchimonji/shopworld-backend:latest .
+          # Build and Push
+          docker build -t $IMAGE_NAME:$VERSION -t $IMAGE_NAME:latest .
+          docker push $IMAGE_NAME:$VERSION
+          docker push $IMAGE_NAME:latest
+          
+          # Save the version for the next step
+          echo "tag=$VERSION" >> $GITHUB_OUTPUT
 

@@ -122,7 +122,7 @@ gcloud run deploy grafana \
 
 ```
 gcloud run deploy shopworld-backend \
-  --image itchimonji/shopworld-backend:v4 \
+  --image itchimonji/shopworld-backend:v4-a83b56e \
   --region europe-west3 \
   --platform managed \
   --allow-unauthenticated \

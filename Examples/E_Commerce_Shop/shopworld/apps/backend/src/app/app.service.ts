@@ -18,4 +18,15 @@ export class AppService {
   getCoffeeMachinesCategories(): string[] {
     return ['Manual', 'Automatic', 'Pod'];
   }
+
+  getCoffeeCompanies(): string[] {
+    return [
+      'Starbucks',
+      'Nespresso',
+      'Lavazza',
+      'Peet\'s Coffee',
+      'Illy',
+      'Stumptown'
+    ];
+  }
 }
