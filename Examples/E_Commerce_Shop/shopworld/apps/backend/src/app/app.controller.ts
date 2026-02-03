@@ -18,7 +18,7 @@ export class AppController {
   @Get("coffee-machine-categories")
   getCoffeeMachinesCategories() {
     return this.appService.getCoffeeMachinesCategories();
-    Hey""
+    Hey"
   }
 
   @Get("coffee-companies")
