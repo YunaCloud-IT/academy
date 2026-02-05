@@ -12,6 +12,7 @@ export class AppController {
 
   @Get("coffee-machines")
   getMachines() {
+   ksdjhfiudshf
     return this.appService.getMachines();
   }
 
