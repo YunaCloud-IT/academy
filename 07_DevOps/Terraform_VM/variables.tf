@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "The GCP project to use for integration tests"
   type        = string
-  default       = "prj-academy-2" # "YOUR_PROJECT_ID"
+  default       = "prj-cloud-solutions-2" # "YOUR_PROJECT_ID"
 }
 
 variable "region" {
@@ -18,7 +18,7 @@ variable "zone" {
 
 variable "subnetwork" {
   description = "The subnetwork selflink to host the compute instances in"
-  default = "default"
+  default = "subnet-apps"
 }
 
 variable "num_instances" {
@@ -28,7 +28,7 @@ variable "num_instances" {
 }
 
 variable "machine_type" {
-  default = "e2-medium"
+  default = "e2-micro"
   type = string
   description = "Specific Machine Type"
 }
@@ -44,7 +44,7 @@ variable "network_tier" {
 }
 
 variable "service_account" {
-  default = null
+  default = { email: "460549935395-compute@developer.gserviceaccount.com", scopes: [] }
   type = object({
     email  = string,
     scopes = set(string)
