@@ -1,0 +1,12 @@
+☁️ Terraform Lab: Deploying a Web Server on GCPWelcome to this Terraform lab! In this exercise, you will learn how to use Infrastructure as Code (IaC) to provision a Google Cloud Platform (GCP) network and a Virtual Machine running an Nginx web server.📋 PrerequisitesBefore starting, ensure you have the following installed and configured:Google Cloud Project: You need a valid GCP Project ID.Terraform CLI: Install Terraform.Google Cloud SDK (gcloud): Install gcloud CLI.📂 Project StructureWe have split our code into logical files to follow best practices:provider.tf: Configures the connection to Google Cloud.main.tf: Contains the resources (VPC, Subnet, Firewall, VM).variables.tf: Defines input variables (Region, Machine Type, etc.).outputs.tf: Defines what Terraform prints back to us (Public IP).terraform.tfvars: (You create this) Where you input your specific Project ID.startup.sh: A shell script that installs Nginx automatically when the VM boots.🚀 Getting Started1. Authenticate with Google CloudTerraform needs credentials to make API calls on your behalf. Run the following command in your terminal and log in with your Google account:gcloud auth application-default login
+2. Configure Your ProjectOpen the file named terraform.tfvars. If it doesn't exist, create it. Add your specific GCP Project ID inside:# terraform.tfvars
+   project_id = "your-student-project-id-123"
+   Note: You can also change the region here if you want to deploy somewhere other than europe-west10.🛠️ Deployment StepsStep 1: InitializeDownload the necessary provider plugins (Google Cloud provider) and set up the environment.terraform init
+   Step 2: PlanPreview the changes Terraform will make. This is a "dry run" to ensure the configuration looks correct before spending money.terraform plan
+   Step 3: ApplyCreate the actual infrastructure. Type yes when prompted to confirm.terraform apply
+   ✅ VerificationOnce terraform apply finishes, you will see an output section in your terminal looking like this:Outputs:
+
+vm_public_ip = "34.123.45.67"
+vpc_name = "vpc-network-terraform"
+Copy the vm_public_ip.Paste it into your web browser (http://<YOUR_IP>).You should see the "Welcome to nginx!" or our custom "Hello from Terraform" message.(Note: It may take 1-2 minutes after the apply finishes for the startup script to complete the Nginx installation).🧹 CleanupTo avoid using up your cloud credits, always destroy your resources when you are finished with the lab.terraform destroy
+Type yes when prompted. This removes the VM, Network, and Firewall rules.

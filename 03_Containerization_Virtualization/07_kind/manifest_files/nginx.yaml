@@ -16,7 +16,7 @@ data:
     </head>
     <body>
     <h1>Rocket Since - Hello from your Local Kind Cluster!</h1>
-    <p>This page is served from a ConfigMap.</p>
+    <p>This page is served from a ConfigMap - V2.</p>
     </body>
     </html>
 ---
@@ -67,7 +67,7 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: NodePort
+  type:  NodePort
   selector:
     app: nginx
   ports:
