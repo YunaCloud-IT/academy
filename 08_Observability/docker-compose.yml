@@ -1,0 +1,50 @@
+services:
+  # The Application
+  shopworld-backend:
+    image: itchimonji/shopworld-backend:v12-3d97ebf
+    container_name: shopworld-backend
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring-net
+    restart: unless-stopped
+
+  # Metrics Database
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - monitoring-net
+    depends_on:
+      - shopworld-backend
+
+  # Visualization
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    ports:
+      - "3001:3000" # Mapped to 3001 to avoid conflict with backend
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring-net
+    depends_on:
+      - prometheus
+
+networks:
+  monitoring-net:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
