@@ -39,6 +39,18 @@ Next, you will connect to the new VM using SSH and install the NGINX software.
     
     # Start the NGINX service
     service nginx start
+    
+    # Default directory of nginx starting page: /var/www/html/index.nginx-debian.html
+    # Remove the old page
+    rm /var/www/html/index.nginx-debian.html
+    
+    # Ceate a new blank starting page
+    nano /var/www/html/index.nginx-debian.html
+    
+    # after this you paste your custom html code in there
+    # for example from ./example-page.html
+    
+    systemctl restart nginx
     ```
 
 ## 3. Verify the Installation

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demystifying Cloud Computing</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Cloud Computing Explained</h1>
+    <p>A simple guide to the future of infrastructure</p>
+</header>
+
+<main>
+    <section id="introduction">
+        <h2>What is Cloud Computing?</h2>
+        <p><strong>Cloud computing</strong> is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ("the cloud") to offer faster innovation, flexible resources, and economies of scale.</p>
+    </section>
+
+    <section id="service-models">
+        <h2>Core Service Models</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Model</th>
+                <th>Stands For</th>
+                <th>Description</th>
+                <th>Examples</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><strong>IaaS</strong></td>
+                <td>Infrastructure as a Service</td>
+                <td>Provides virtualized computing resources over the internet. You manage the OS and data.</td>
+                <td>AWS EC2, Google Compute Engine</td>
+            </tr>
+            <tr>
+                <td><strong>PaaS</strong></td>
+                <td>Platform as a Service</td>
+                <td>Provides hardware and software tools over the internet, typically for application development.</td>
+                <td>Heroku, Google App Engine</td>
+            </tr>
+            <tr>
+                <td><strong>SaaS</strong></td>
+                <td>Software as a Service</td>
+                <td>Delivers software applications over the internet, on demand and typically on a subscription basis.</td>
+                <td>Google Workspace, Salesforce</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="deployment-models">
+        <h2>Deployment Models</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Public Cloud</h3>
+                <p>Owned and operated by third-party cloud service providers, delivering computing resources over the public internet. All hardware is managed by the provider.</p>
+            </div>
+            <div class="card">
+                <h3>Private Cloud</h3>
+                <p>Cloud computing resources used exclusively by a single business or organization. It can be physically located on the company's on-site datacenter.</p>
+            </div>
+            <div class="card">
+                <h3>Hybrid Cloud</h3>
+                <p>Combines public and private clouds, bound together by technology that allows data and applications to be shared between them.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Cloud Computing Guide. Created for educational purposes.</p>
+</footer>
+
+</body>
+</html>
