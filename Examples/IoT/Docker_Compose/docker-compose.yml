@@ -1,0 +1,93 @@
+services:
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password1234
+      - DOCKER_INFLUXDB_INIT_ORG=academy
+      - DOCKER_INFLUXDB_INIT_BUCKET=iot_data
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -t '$$SYS/#' -C 1 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
+    depends_on:
+      - influxdb
+      - mosquitto
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "80:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=213fs32GDas
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/json
+
+  simulator:
+    image: itchimonji/academy-iot-simulator:sha-4abf7b8
+    container_name: iot-simulator
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+    environment:
+      - MQTT_BROKER_URL=mqtt://mosquitto:1883
+      - MQTT_TOPIC=academy
+      - PORT=8080
+      - TIME_MULTIPLIER=60
+      - TRAFFIC_INTERVAL=2000
+      - TELEMATICS_INTERVAL=2000
+      - GRID_INTERVAL=2000
+      - RTLS_INTERVAL=3000
+      - VITALS_INTERVAL=5000
+      - COLDCHAIN_INTERVAL=5000
+      - LIVESTOCK_INTERVAL=5000
+      - SIMULATION_INTERVAL=5000
+      - RFID_SIMULATION_INTERVAL=10000
+      - WASTE_INTERVAL=10000
+      - SOIL_INTERVAL=10000
+      - ANOMALY_PROBABILITY=0.05
+    ports:
+      - "8080:8080"
+
+volumes:
+  influxdb_data:
+  influxdb_config:
+  mosquitto_data:
+  mosquitto_log:
+  grafana_data:
