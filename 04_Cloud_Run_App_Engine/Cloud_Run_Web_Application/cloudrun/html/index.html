@@ -1,3 +1,197 @@
-<html>
-<body>Google Cloud Run and NGINX - Version 2</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path to Becoming a Cloud Engineer</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f4f4f9;
+            --text-color: #333;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .skill-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: var(--text-color);
+            color: #fff;
+        }
+
+        .roadmap-step {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Becoming a Cloud Engineer</h1>
+    <p>Your guide to building scalable, secure, and resilient cloud infrastructure.</p>
+</header>
+
+<div class="container">
+    <section id="introduction">
+        <h2>What is a Cloud Engineer?</h2>
+        <p>A Cloud Engineer is an IT professional responsible for any technological duties associated with cloud computing, including design, planning, management, maintenance, and support. As companies move their infrastructure off-site, cloud engineers ensure these systems run smoothly, securely, and efficiently.</p>
+    </section>
+
+    <section id="roadmap">
+        <h2>The Roadmap</h2>
+
+        <div class="roadmap-step">
+            <div class="step-number">1</div>
+            <div>
+                <strong>Master the Basics:</strong> Learn networking (TCP/IP, DNS, HTTP), operating systems (especially Linux), and basic virtualization.
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-number">2</div>
+            <div>
+                <strong>Learn to Code:</strong> Pick up a scripting language like Python, Bash, or Go. Automation is a core tenant of cloud engineering.
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-number">3</div>
+            <div>
+                <strong>Choose a Cloud Provider:</strong> Focus heavily on one major cloud provider (AWS, Azure, or Google Cloud) before branching out.
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-number">4</div>
+            <div>
+                <strong>Infrastructure as Code (IaC):</strong> Learn tools like Terraform or AWS CloudFormation to provision infrastructure through code.
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-number">5</div>
+            <div>
+                <strong>CI/CD & Containers:</strong> Understand Docker, Kubernetes, and continuous integration/deployment pipelines (e.g., GitHub Actions, Jenkins).
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Essential Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Linux & OS</h3>
+                <p>Command line proficiency, bash scripting, file permissions, and system administration.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Networking & Security</h3>
+                <p>VPCs, Subnets, Load Balancers, Firewalls, IAM (Identity and Access Management).</p>
+            </div>
+            <div class="skill-card">
+                <h3>Containers & Orchestration</h3>
+                <p>Docker containerization and Kubernetes for managing microservices at scale.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <p>Python is the industry standard for cloud automation, alongside Bash and Go.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Recommended Certifications</h2>
+        <ul>
+            <li><strong>Beginner:</strong> AWS Certified Cloud Practitioner / Microsoft Certified: Azure Fundamentals / Google Cloud Digital Leader</li>
+            <li><strong>Intermediate:</strong> AWS Certified Solutions Architect - Associate / Azure Administrator Associate / Google Cloud Associate Cloud Engineer</li>
+            <li><strong>Advanced:</strong> AWS Certified DevOps Engineer - Professional / Azure DevOps Engineer Expert</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2026 Cloud Career Guide. Keep learning and keep building.</p>
+</footer>
+
+</body>
 </html>
