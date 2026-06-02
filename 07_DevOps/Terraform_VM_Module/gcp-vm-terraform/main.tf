@@ -11,7 +11,7 @@ terraform {
 # Configure the Google Cloud provider
 provider "google" {
   # Replace this with your Project ID from Google Cloud Console
-  project     = "prj-academy-2"
+  project     = "ams-iot-1"
   region      = "europe-west10"
   zone        = "europe-west10-c"
 }
