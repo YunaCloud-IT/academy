@@ -40,4 +40,9 @@ export class AppController {
   getBrewingMethods() {
     return this.appService.getBrewingMethods();
   }
+
+  @Get("product-test-endpoint")
+  getProductTestEndpoint() {
+    return "Test endpoint is working"
+  }
 }
