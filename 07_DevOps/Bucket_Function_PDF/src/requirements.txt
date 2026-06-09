@@ -1,0 +1,5 @@
+functions-framework==3.*
+google-cloud-storage==2.*
+google-cloud-aiplatform==1.*
+PyPDF2==3.*
+fpdf2==2.*

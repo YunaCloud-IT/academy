@@ -11,9 +11,15 @@ terraform {
 # Configure the Google Cloud provider
 provider "google" {
   # Replace this with your Project ID from Google Cloud Console
-  project     = "ams-iot-1"
-  region      = "europe-west10"
+  project     = local.project
+  region      = local.region
+  zone        = local.zone
+}
+
+locals {
   zone        = "europe-west10-c"
+  region      = "europe-west10"
+  project     = "iot-srh-group-2"
 }
 
 # 1. Create a VPC Network
@@ -27,7 +33,7 @@ resource "google_compute_network" "vpc_network" {
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = var.vm_machine_type
-  zone         = "europe-west10-c" # Change this to your desired zone
+  zone         = local.zone
 
   # Define the boot disk and image
   boot_disk {

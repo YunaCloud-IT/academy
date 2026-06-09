@@ -1,7 +1,7 @@
 variable "project_id" {
   description = "The GCP project to use for integration tests"
   type        = string
-  default       = "prj-cloud-solutions-2" # "YOUR_PROJECT_ID"
+  default       = "iot-srh-group-2" # "YOUR_PROJECT_ID"
 }
 
 variable "region" {
@@ -18,7 +18,7 @@ variable "zone" {
 
 variable "subnetwork" {
   description = "The subnetwork selflink to host the compute instances in"
-  default = "subnet-apps"
+  default = "default"
 }
 
 variable "num_instances" {
