@@ -195,11 +195,3 @@ resource "google_cloudfunctions2_function" "cv_processor_function" {
     google_project_iam_member.vertex_ai_user
   ]
 }
-
-resource "google_cloud_run_service_iam_member" "eventarc_invoker" {
-  project  = var.project_id
-  location = var.region
-  service  = google_cloudfunctions2_function.cv_processor_function.service_config[0].service
-  role     = "roles/run.invoker"
-  member   = "serviceAccount:${google_service_account.function_sa.email}"
-}

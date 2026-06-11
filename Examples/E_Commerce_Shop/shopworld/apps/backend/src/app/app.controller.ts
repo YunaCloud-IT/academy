@@ -45,4 +45,9 @@ export class AppController {
   getProductTestEndpoint() {
     return "Test endpoint is working"
   }
+
+  @Get("product-test-endpoint-2")
+  getProductTestEndpointSecond() {
+    return "Test endpoint is working"
+  }
 }
