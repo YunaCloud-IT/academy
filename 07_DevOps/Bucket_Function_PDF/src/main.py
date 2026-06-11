@@ -7,11 +7,14 @@ from fpdf import FPDF
 import vertexai
 from vertexai.generative_models import GenerativeModel
 
-# Initialize Vertex AI (it automatically picks up the current project and region in GCP)
-vertexai.init()
+# Cloud Functions automatically injects the active project ID into the environment
+project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
 
-# We use the Gemini 1.5 Flash model as it is fast and excellent at text summarization
-model = GenerativeModel("gemini-1.5-flash-002")
+# 1. Explicitly force Vertex AI to use the same region as your Cloud Function
+vertexai.init(project=project_id, location="europe-west3")
+
+# 2. Use the newer model (fully available for new projects)
+model = GenerativeModel("gemini-2.5-flash")
 
 @functions_framework.cloud_event
 def process_cv(cloud_event):
@@ -70,6 +73,22 @@ def process_cv(cloud_event):
         summary_text = response.text
         print("Successfully generated summary via Vertex AI.")
 
+        # --- NEW ADDITION: Sanitize the text for Helvetica ---
+        # Replace common Unicode characters Gemini uses with standard ASCII equivalents
+        summary_text = (
+            summary_text.replace("–", "-")   # en-dash to hyphen
+            .replace("—", "-")               # em-dash to hyphen
+            .replace("’", "'")               # smart single quote to standard
+            .replace("‘", "'")               # smart single quote to standard
+            .replace("“", '"')               # smart double quote to standard
+            .replace("”", '"')               # smart double quote to standard
+            .replace("•", "*")               # bullet point to asterisk
+        )
+
+        # Catch-all: force the string into latin-1, ignoring any remaining unsupported characters
+        summary_text = summary_text.encode("latin-1", "ignore").decode("latin-1")
+        # -----------------------------------------------------
+
         # 5. Create a new PDF with the summary
         pdf = FPDF()
         pdf.add_page()
@@ -80,7 +99,7 @@ def process_cv(cloud_event):
         pdf.cell(0, 10, "CV Analysis Summary", new_x="LMARGIN", new_y="NEXT", align="C")
         pdf.ln(10)
 
-        # Adding the summary body (fpdf2 supports UTF-8 natively)
+        # Adding the summary body
         pdf.set_font("helvetica", size=12)
         pdf.multi_cell(0, 10, summary_text)
 
