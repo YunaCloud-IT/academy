@@ -132,6 +132,58 @@ kubectl rollout restart deployment/nginx-deployment
 
 3. Mount: When the Pod starts, Kubernetes takes the data from the ConfigMap and places it at `/usr/share/nginx/html/index.html` inside the container, effectively overwriting the default Nginx file.
 
+## IoT Stack (TIG Stack & IoT Simulator)
+
+We've converted the Docker Compose configuration into a single unified Kubernetes manifest under `manifest_files/iot-stack.yaml`. This stack deploys InfluxDB v2, Eclipse Mosquitto (MQTT Broker), Telegraf, Grafana, and an IoT Simulator.
+
+### How to Deploy
+
+Apply the configuration:
+
+```bash
+kubectl apply -f ./manifest_files/iot-stack.yaml
+```
+
+Verify that all PVCs, ConfigMaps, Services, and Pods are running:
+
+```bash
+kubectl get pvc,configmap,svc,pods -l "app in (influxdb, mosquitto, telegraf, grafana, iot-simulator)"
+```
+
+### Accessing the Services in Kind (Local Development)
+
+Because Kind only maps specific ports to your host, you can access the IoT stack services locally using `kubectl port-forward`:
+
+* **Grafana Dashboard:**
+  ```bash
+  kubectl port-forward svc/grafana 3000:80
+  ```
+  Open [http://localhost:3000](http://localhost:3000) (Admin credentials: `admin` / `213fs32GDas`). The datasource (InfluxDB) and the "Academy IoT Simulator Dashboard" are pre-provisioned and ready to go!
+  
+* **IoT Simulator UI:**
+  ```bash
+  kubectl port-forward svc/iot-simulator 8080:8080
+  ```
+  Open [http://localhost:8080](http://localhost:8080) to interact with the simulated devices.
+
+* **Mosquitto (MQTT Broker):**
+  ```bash
+  kubectl port-forward svc/mosquitto 1883:1883
+  ```
+  You can connect your local MQTT Explorer to `localhost:1883`.
+
+### Accessing the Services in GKE (Production Cloud)
+
+For production GKE deployments, an additional service `grafana-lb` of `type: LoadBalancer` is included. This automatically provisions a Google Cloud Load Balancer with a public external IP.
+
+Find the external IP once GKE has provisioned it:
+
+```bash
+kubectl get svc grafana-lb
+```
+
+Open your browser to `http://<EXTERNAL_IP>` to access your Grafana dashboard securely from anywhere.
+
 ## Metrics Server
 
 ### Step 1: Install the Metrics Server
