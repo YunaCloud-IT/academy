@@ -47,17 +47,17 @@ spec:
     requests:
       storage: 1Gi
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: grafana-data-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: standard
-  resources:
-    requests:
-      storage: 1Gi
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: grafana-data-pvc
+# spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  storageClassName: standard
+#  resources:
+#    requests:
+#      storage: 1Gi
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -1580,6 +1580,9 @@ spec:
       containers:
         - name: telegraf
           image: telegraf:latest
+          securityContext:
+            runAsUser: 999
+            runAsGroup: 999
           resources:
             requests:
               cpu: "50m"
@@ -1638,8 +1641,8 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 10
           volumeMounts:
-            - name: grafana-data
-              mountPath: /var/lib/grafana
+          #   - name: grafana-data
+          #     mountPath: /var/lib/grafana
             - name: grafana-provisioning-datasources
               mountPath: /etc/grafana/provisioning/datasources
             - name: grafana-provisioning-dashboards
@@ -1647,9 +1650,9 @@ spec:
             - name: grafana-dashboards
               mountPath: /etc/grafana/provisioning/dashboards/json
       volumes:
-        - name: grafana-data
-          persistentVolumeClaim:
-            claimName: grafana-data-pvc
+        # - name: grafana-data
+        #   persistentVolumeClaim:
+        #     claimName: grafana-data-pvc
         - name: grafana-provisioning-datasources
           configMap:
             name: grafana-provisioning-datasources
