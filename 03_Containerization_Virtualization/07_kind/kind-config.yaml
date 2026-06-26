@@ -8,6 +8,8 @@ nodes:
         hostPort: 8080
       - containerPort: 30081
         hostPort: 8081
+      - containerPort: 30082
+        hostPort: 8082
     extraMounts:
       - hostPath: ./cluster-data
         containerPath: /var/local-path-provisioner
