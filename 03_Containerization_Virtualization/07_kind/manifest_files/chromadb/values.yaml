@@ -1,0 +1,22 @@
+environment: "PROD"
+
+chromadb:
+  ingress:
+    enabled: false
+  podSpec:
+    terminationGracePeriodSeconds: 5
+
+    # Notice there is NO "securityContext:" wrapper here anymore!
+    fsGroup: 2000
+    runAsNonRoot: true
+    runAsUser: 1000
+
+    capabilities:
+      drop:
+        - ALL
+  chromadb:
+    corsAllowOrigins: ["*"]
+    logging:
+      root: "ERROR"
+      chromadb: "ERROR"
+      uvicorn: "ERROR"

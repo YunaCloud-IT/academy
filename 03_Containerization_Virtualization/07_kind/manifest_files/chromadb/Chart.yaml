@@ -1,0 +1,11 @@
+apiVersion: v2
+name: chromadb
+appVersion: "1.0"
+description: A Helm chart for chromadb
+version: 1.0.0
+type: application
+dependencies:
+  - name: chromadb
+    version: "0.2.2"
+    repository: https://amikos-tech.github.io/chromadb-chart/
+    condition: chromadb.enabled
